@@ -63,6 +63,11 @@ func main() {
 					EnvVar: "DOCKER_HOST",
 				},
 				cli.StringFlag{
+					Name:  "machine-dir, m",
+					Value: "",
+					Usage: "Docker Machine config directory",
+				},
+				cli.StringFlag{
 					Name:  "tls-ca-cert",
 					Value: "",
 					Usage: "tls ca certificate",

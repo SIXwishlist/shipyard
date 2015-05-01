@@ -99,26 +99,27 @@ func DefaultNodeProviders() []*NodeProvider {
 
 	providers = append(providers, rs)
 
-	azure := &NodeProvider{
-		Name:        "Microsoft Azure",
-		DriverName:  "azure",
-		URL:         "http://azure.microsoft.com",
-		Description: "Cloud Computing Platform & Services",
-		Params: []NodeProviderParam{
-			{
-				Key:         "azure-subscription-id",
-				Description: "Azure Subscription ID",
-				Required:    true,
-			},
-			{
-				Key:         "azure-subscription-cert",
-				Description: "Azure Subscription Certificate",
-				Required:    true,
-			},
-		},
-	}
+	// TODO: figure out how to send the certificate file
+	//azure := &NodeProvider{
+	//	Name:        "Microsoft Azure",
+	//	DriverName:  "azure",
+	//	URL:         "http://azure.microsoft.com",
+	//	Description: "Cloud Computing Platform & Services",
+	//	Params: []NodeProviderParam{
+	//		{
+	//			Key:         "azure-subscription-id",
+	//			Description: "Azure Subscription ID",
+	//			Required:    true,
+	//		},
+	//		{
+	//			Key:         "azure-subscription-cert",
+	//			Description: "Azure Subscription Certificate",
+	//			Required:    true,
+	//		},
+	//	},
+	//}
 
-	providers = append(providers, azure)
+	//providers = append(providers, azure)
 
 	return providers
 }

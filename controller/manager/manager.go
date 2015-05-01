@@ -61,6 +61,7 @@ type (
 		store            *sessions.CookieStore
 		client           *dockerclient.DockerClient
 		disableUsageInfo bool
+		machineDir       string
 	}
 
 	Manager interface {
@@ -111,7 +112,7 @@ type (
 	}
 )
 
-func NewManager(addr string, database string, authKey string, client *dockerclient.DockerClient, disableUsageInfo bool, authenticator auth.Authenticator) (Manager, error) {
+func NewManager(addr string, database string, authKey string, client *dockerclient.DockerClient, disableUsageInfo bool, authenticator auth.Authenticator, machineDir string) (Manager, error) {
 	session, err := r.Connect(r.ConnectOpts{
 		Address:     addr,
 		Database:    database,
@@ -134,6 +135,7 @@ func NewManager(addr string, database string, authKey string, client *dockerclie
 		client:           client,
 		storeKey:         storeKey,
 		disableUsageInfo: disableUsageInfo,
+		machineDir:       machineDir,
 	}
 	m.initdb()
 	m.init()
@@ -727,6 +729,8 @@ func (m DefaultManager) DeployNode(config *shipyard.NodeDeployConfig) (*exec.Cmd
 	}
 
 	params := []string{
+		"--storage-path",
+		m.machineDir,
 		"create",
 		"-d",
 		config.DriverName,

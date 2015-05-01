@@ -40,6 +40,7 @@ func CmdServer(c *cli.Context) {
 	tlsCert := c.String("tls-cert")
 	tlsKey := c.String("tls-key")
 	allowInsecure := c.Bool("allow-insecure")
+	machineDir := c.String("machine-dir")
 
 	client, err := utils.GetClient(dockerUrl, tlsCaCert, tlsCert, tlsKey, allowInsecure)
 	if err != nil {
@@ -54,7 +55,7 @@ func CmdServer(c *cli.Context) {
 		authenticator = ldap.NewAuthenticator(ldapServer, ldapPort, ldapBaseDn, ldapAutocreateUsers, ldapDefaultAccessLevel)
 	}
 
-	controllerManager, err := manager.NewManager(rethinkdbAddr, rethinkdbDatabase, rethinkdbAuthKey, client, disableUsageInfo, authenticator)
+	controllerManager, err := manager.NewManager(rethinkdbAddr, rethinkdbDatabase, rethinkdbAuthKey, client, disableUsageInfo, authenticator, machineDir)
 	if err != nil {
 		log.Fatal(err)
 	}
