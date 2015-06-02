@@ -20,6 +20,9 @@
         <a ui-sref="dashboard.accounts" ui-sref-active="active" class="title item">
             <i class="user icon"></i> Accounts
         </a>
+        <a ui-sref="dashboard.ext" ui-sref-active="active" class="title item">
+            <i class="puzzle icon"></i> Ext
+        </a>
         <a ui-sref="dashboard.events" ui-sref-active="active" class="title item">
             <i class="browser icon"></i> Events
         </a>
@@ -50,7 +53,7 @@
                     <div class="header">
                         One moment...
                     </div>
-                    <p>Fetching content...</p>
+                    <p>Loading...</p>
                     <div class="status">
                         <div ng-repeat="m in vm.messages">{{m}}</div>
                     </div>

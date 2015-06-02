@@ -14,6 +14,7 @@
                 'shipyard.registry',
                 'shipyard.nodes',
                 'shipyard.images',
+                'shipyard.ext',
                 'shipyard.filters',
                 'angular-jwt',
                 'base64',

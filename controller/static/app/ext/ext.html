@@ -1,0 +1,67 @@
+<div class="two column row">
+    <div class="left floated column">
+        <div ng-click="vm.refresh()" class="ui small blue labeled icon button">
+            <i class="refresh icon"></i> Refresh
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="vm.error">
+    <div class="sixteen wide column">
+        <div class="ui error message">
+            <div class="header">Error...</div>
+            <p>{{vm.error}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+<div class="column">
+    <div class="ui cards">
+       <div class="card">
+           <div class="image">
+               <img src="./app/static/img/nginx.png">
+           </div>
+           <div class="content">
+               <a class="header">Nginx</a>
+               <div class="meta">
+                   <span class="date"></span>
+               </div>
+               <div class="description">
+                   Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+               </div>
+           </div>
+           <div class="extra content">
+               <a>
+                   <i class="user icon"></i>
+                   22 Friends
+               </a>
+           </div>
+       </div>
+       <div class="card">
+           <div class="image">
+               <img src="./app/static/img/haproxy.png">
+           </div>
+           <div class="content">
+               <a class="header">HAProxy</a>
+               <div class="meta">
+                   <span class="date"></span>
+               </div>
+               <div class="description">
+                   Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+               </div>
+           </div>
+           <div class="extra content">
+               <a>
+                   <i class="user icon"></i>
+                   22 Friends
+               </a>
+           </div>
+       </div>
+    </div>
+</div>
+</div>
+
+<script>
+$('.ui.sortable.celled.table').tablesort();
+</script>
