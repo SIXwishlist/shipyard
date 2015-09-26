@@ -212,6 +212,8 @@ func (a *Api) Run() error {
 			"/containers/{name:.*}/stats":     swarmRedirect,
 			"/containers/{name:.*}/attach/ws": swarmHijack,
 			"/exec/{execid:.*}/json":          swarmRedirect,
+			"/volumes":                        swarmRedirect,
+			"/volumes/{volumename:.*}":        swarmRedirect,
 		},
 		"POST": {
 			"/auth":                         swarmRedirect,
@@ -240,6 +242,7 @@ func (a *Api) Run() error {
 		"DELETE": {
 			"/containers/{name:.*}": swarmRedirect,
 			"/images/{name:.*}":     swarmRedirect,
+			"/volumes/{name:.*}":    swarmRedirect,
 		},
 		"OPTIONS": {
 			"": swarmRedirect,
@@ -279,6 +282,8 @@ func (a *Api) Run() error {
 	globalMux.Handle("/version", swarmAuthRouter)
 	globalMux.Handle("/images/", swarmAuthRouter)
 	globalMux.Handle("/exec/", swarmAuthRouter)
+	globalMux.Handle("/volumes", swarmAuthRouter)
+	globalMux.Handle("/volumes/", swarmAuthRouter)
 	globalMux.Handle("/v1.14/", swarmAuthRouter)
 	globalMux.Handle("/v1.15/", swarmAuthRouter)
 	globalMux.Handle("/v1.16/", swarmAuthRouter)
@@ -286,6 +291,7 @@ func (a *Api) Run() error {
 	globalMux.Handle("/v1.18/", swarmAuthRouter)
 	globalMux.Handle("/v1.19/", swarmAuthRouter)
 	globalMux.Handle("/v1.20/", swarmAuthRouter)
+	globalMux.Handle("/v1.21/", swarmAuthRouter)
 
 	// check for admin user
 	if _, err := controllerManager.Account("admin"); err == manager.ErrAccountDoesNotExist {

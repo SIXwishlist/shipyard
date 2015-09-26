@@ -196,3 +196,9 @@ func (m MockManager) GetAuthenticator() auth.Authenticator {
 func (m MockManager) ScaleContainer(id string, numInstances int) manager.ScaleResult {
 	return manager.ScaleResult{Scaled: []string{"9c3c7dd2199a95cce29950b612ecf918ae278a42e53e10f6cccb752b6fbcd8b3"}, Errors: []string{"500 Internal Server Error: no resources available to schedule container"}}
 }
+
+func (m MockManager) Volumes() ([]*dockerclient.Volume, error) {
+	return []*dockerclient.Volume{
+		TestVolume,
+	}, nil
+}

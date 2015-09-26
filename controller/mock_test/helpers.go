@@ -56,6 +56,11 @@ var (
 		ContainerID: "abcdefg",
 		Token:       "1234567890",
 	}
+	TestVolume = &dockerclient.Volume{
+		Name:       "test-vol",
+		Driver:     "local",
+		Mountpoint: "/test",
+	}
 )
 
 func getTestContainerInfo(id string, name string, image string) *dockerclient.ContainerInfo {

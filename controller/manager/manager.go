@@ -111,6 +111,8 @@ type (
 		RemoveConsoleSession(c *shipyard.ConsoleSession) error
 		ConsoleSession(token string) (*shipyard.ConsoleSession, error)
 		ValidateConsoleSessionToken(containerId, token string) bool
+
+		Volumes() ([]*dockerclient.Volume, error)
 	}
 )
 

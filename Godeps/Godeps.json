@@ -78,7 +78,7 @@
 		},
 		{
 			"ImportPath": "github.com/samalba/dockerclient",
-			"Rev": "8802d66ce78e69ff16692f6fa89ad969a5711b8b"
+			"Rev": "cfb489c624b635251a93e74e1e90eb0959c5367f"
 		},
 		{
 			"ImportPath": "github.com/stretchr/testify/assert",

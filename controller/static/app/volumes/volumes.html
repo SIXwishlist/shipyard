@@ -1,0 +1,103 @@
+<div id="remove-modal" class="ui small modal transition">
+    <i class="close icon"></i>
+    <div class="header">
+        Remove Volume: {{ vm.selectedVolume.Name }}
+    </div>
+    <div class="content">
+        <p>Are you sure you want to remove this volume?</p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+            No
+        </div>
+        <div ng-click="vm.removeVolume()" class="ui positive right labeled icon button">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+
+<div class="ui padded grid">
+<div class="two column row">
+    <div class="left floated column">
+        <div ng-click="vm.refresh()" class="ui small blue labeled icon button">
+            <i class="refresh icon"></i> Refresh
+        </div>
+    </div>
+    <div class="right aligned right floated column">
+        <div class="ui small icon input">
+            <input ng-model="tableFilter" placeholder="Search volumes..." reset-field/>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="vm.error">
+    <div class="sixteen wide column">
+        <div class="ui error message">
+            <div class="header">Error...</div>
+            <p>{{vm.error}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="vm.volumes.length === 0">
+    <div class="column">
+        <div class="ui icon message">
+            <i class="info icon"></i>
+            <div class="content">
+                <div class="header">
+                    Volumes
+                </div>
+                <p>There are no volumes in the cluster.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="filteredVolumes.length>0">
+    <div class="column">
+        <table class="ui sortable celled table">
+            <thead>
+                <tr>
+                    <th>Driver</th>
+                    <th>Name</th>
+                    <th>Mountpoint</th>
+                    <th>Node</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="v in filteredVolumes = (vm.volumes | filter:tableFilter)">
+                    <td>{{v.Driver}}</td>
+                    <td>{{v.Name}}</td>
+                    <td>{{v.Mountpoint}}</td>
+                    <td>{{v.Engine.Name}}</td>
+                    <td class="collapsing">
+                        <div ng-click="vm.showRemoveVolumeDialog(v)" class="compact ui basic icon button">
+                            <i class="trash icon"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row" ng-show="vm.volumes.length > 0 && filteredVolumes.length === 0">
+    <div class="column">
+        <div class="ui icon message">
+            <i class="info icon"></i>
+            <div class="content">
+                <div class="header">
+                    Volumes
+                </div>
+                <p>No volumes matched your filter query</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+$('.ui.sortable.celled.table').tablesort();
+</script>
