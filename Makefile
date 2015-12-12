@@ -4,6 +4,10 @@ GOARCH=amd64
 TAG?=latest
 COMMIT=`git rev-parse --short HEAD`
 export GO15VENDOREXPERIMENT=1
+MEDIA_SRCS=$(shell find controller/public/ -type f \
+	   	-not -path "controller/public/dist/*" \
+		-not -path "controller/public/node_modules/*")
+
 
 all: build media
 
@@ -26,7 +30,8 @@ remote-build:
 
 media: media-semantic media-app
 
-media-semantic:
+media-semantic: controller/public/dist/.bundle_timestamp
+controller/public/dist/.bundle_timestamp: $(MEDIA_SRCS)
 	@cd controller && cp -f public/semantic.theme.config public/semantic/src/theme.config
 	@cd controller && cd public/semantic && gulp build
 	@cd controller && mkdir -p public/dist
@@ -34,6 +39,7 @@ media-semantic:
 	@cd controller && cp -f public/semantic/dist/semantic.min.css public/dist/semantic.min.css
 	@cd controller && cp -f public/semantic/dist/semantic.min.js public/dist/semantic.min.js
 	@cd controller && mkdir -p public/dist/themes/default && cp -r public/semantic/dist/themes/default/assets public/dist/themes/default/
+	@touch controller/public/dist/.bundle_timestamp
 
 media-app:
 	@cd controller && mkdir -p public/dist
