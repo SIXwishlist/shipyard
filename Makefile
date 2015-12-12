@@ -15,7 +15,7 @@ dev-setup:
 	@echo "This could take a while..."
 	@npm install --loglevel verbose -g gulp browserify babelify
 	@cd controller && cd public && npm install --loglevel verbose
-	@cd controller && cd public/node_modules/semantic-ui && gulp install
+	@cd controller && cd public && npm install semantic-ui
 
 build:
 	@cd controller && godep go build -a -tags "netgo static_build" -installsuffix netgo -ldflags "-w -X github.com/shipyard/shipyard/version.GitCommit=$(COMMIT)" .
